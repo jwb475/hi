@@ -12,11 +12,8 @@ while throws < 0:#creating while loop to force user to input valid number
     throws = int(input("Number of throws: "))
 
 import time
+start = time.time()
 
-#creating print header
-print()
-print("Total time elapsed :", time.time(), "seconds")
-print()
 
 import random
 import math
@@ -27,18 +24,41 @@ green = 0
 blue = 0
 greysmall = 0
 greybig = 0
+misses = 0
 
 #
 while throws != 0:
     x = random.uniform(0,800)
     y = random.uniform(0,500)
-    if x == [(400, 450)] and y == [(50, 200)]:
-        red += 1
+    if 400 < x < 450 and 50 < y < 200:
+        red += 1 
         throws -= 1
-    if x == [50, 250] and y == [50, 400]:
+    if 50 < x < 250 and 50 < y < 400:
         green += 1
         throws -= 1
+        if x == 150 and y == 150:
+            green -= 1
+            misses += 1
+        if x == 600 and y == 250:
+            green -= 1
+            misses += 1
+        if 100 < x < 200 and 300 < y < 400:
+            green -= 1
+            misses += 1
+    if 350 < x < 500 and 250 < y < 450:
+        blue += 1
+        throws -= 1
 
-print("Red:", format(red,'>12, .2f'), )       
-    
+end = time.time()
+
+#creating print header
+print()
+print("Total time elapsed :", end-start, "seconds")
+print()
+print("Red:", red)
+print ("Green:", green)
+print("Blue:", blue)
+print ("Misses:", misses)
+
+
 
